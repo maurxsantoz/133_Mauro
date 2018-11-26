@@ -10,7 +10,7 @@ $step=3;
 $i;
 for($i=0;$i<10;$i++){
     if($value>=30){
-        echo("Le nombre vaut .$value.<br>");
+        echo("Le nombre vaut $value<br>");
     }else{
         echo("nombre trop petit <br>");
     }
