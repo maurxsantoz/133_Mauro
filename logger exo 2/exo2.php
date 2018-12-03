@@ -120,16 +120,19 @@ function convertLevelIntToDescription($levelNumber)
     /*Help
     http://php.net/manual/en/control-structures.switch.php
     */
-    $levelDescription = "";
     switch ($levelNumber) {
         case 1:
             return("Info");
+            break;
         case 2:
             return("Warning");
+            break;
         case 3:
             return("Error");
+            break;
         default:
             return("Unknown");
+            break;
     }
 
     //TODO - good place to code ?
