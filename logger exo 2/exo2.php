@@ -103,7 +103,7 @@ function prepareMsgToWrite($msg, $levelNumber)
     //TODO - a good place to convert level in level description
         $date=date("d/m/y G:i:s");
         $levelNumber=convertLevelIntToDescription($levelNumber);
-        return("$date\t\t".$levelNumber."\t".$msg);
+        return("$date\t".$levelNumber."\t".$msg);
 }
 
 /**
@@ -124,16 +124,12 @@ function convertLevelIntToDescription($levelNumber)
     switch ($levelNumber) {
         case 1:
             return("Info");
-            break;
         case 2:
             return("Warning");
-            break;
         case 3:
             return("Error");
-            break;
         default:
             return("Unknown");
-            break;
     }
 
     //TODO - good place to code ?
