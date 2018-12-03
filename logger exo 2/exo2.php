@@ -101,7 +101,8 @@ function prepareMsgToWrite($msg, $levelNumber)
 	*/
     //TODO - good place to code ;)
     //TODO - a good place to convert level in level description
-        $date=date("d/m/y G:i:s");
+        date_default_timezone_set('Europe/Zurich');
+        $date=date("Y-m-d H:i:s");
         $levelNumber=convertLevelIntToDescription($levelNumber);
         return("$date\t".$levelNumber."\t".$msg);
 }
@@ -120,20 +121,22 @@ function convertLevelIntToDescription($levelNumber)
     /*Help
     http://php.net/manual/en/control-structures.switch.php
     */
+    $levelDesc="";
     switch ($levelNumber) {
         case 1:
-            return("Info");
+            $levelDesc="Info";
             break;
         case 2:
-            return("Warning");
+            $levelDesc="Warning";
             break;
         case 3:
-            return("Error");
+            $levelDesc="Error";
             break;
         default:
-            return("Unknown");
+            $levelDesc="Unknown";
             break;
     }
+    return $levelDesc;
 
     //TODO - good place to code ?
 }

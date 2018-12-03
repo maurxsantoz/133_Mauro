@@ -1,7 +1,7 @@
 TimeStamp			Level	Message
-03/12/18 10:18:51	Info	This is an info
-03/12/18 10:18:51	Warning	This a warning
-03/12/18 10:18:51	Error	This an error
-03/12/18 10:18:51	Unknown	This an unknown
-03/12/18 10:18:51	Info	Too short
-03/12/18 10:18:51	Info	This is a very long info message
+2018-12-03 11:50:30	Info	This is an info
+2018-12-03 11:50:30	Warning	This a warning
+2018-12-03 11:50:30	Error	This an error
+2018-12-03 11:50:30	Unknown	This an unknown
+2018-12-03 11:50:30	Info	Too short
+2018-12-03 11:50:30	Info	This is a very long info message
