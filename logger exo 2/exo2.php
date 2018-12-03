@@ -101,7 +101,7 @@ function prepareMsgToWrite($msg, $levelNumber)
 	*/
     //TODO - good place to code ;)
     //TODO - a good place to convert level in level description
-        $date=date("d/m/y G:i");
+        $date=date("d/m/y G:i:s");
         $levelNumber=convertLevelIntToDescription($levelNumber);
         return("$date\t\t".$levelNumber."\t".$msg);
 }
