@@ -30,8 +30,14 @@ $testValues = array(
 foreach ($testValues as $msg)
 {
     //TODO - a good place to prepare the message
+    if(strlen($msg[1])>12){
+        if(strlen($msg[1])>15){
+            writeMsgInFile($fileFullPath,prepareMsgToWrite(substr($msg[1],0,15),$msg[0]), false);
 
-    writeMsgInFile($fileFullPath,prepareMsgToWrite($msg[1],$msg[0]), false);
+        }else{
+            writeMsgInFile($fileFullPath,prepareMsgToWrite($msg[1],$msg[0]), false);
+        }
+    }
 }
 //</editor-fold>
 
@@ -101,7 +107,7 @@ function prepareMsgToWrite($msg, $levelNumber)
 	*/
     //TODO - good place to code ;)
     //TODO - a good place to convert level in level description
-        date_default_timezone_set('Europe/Zurich');
+        date_default_timezone_set("Europe/Zurich");
         $date=date("Y-m-d H:i:s");
         $levelNumber=convertLevelIntToDescription($levelNumber);
         return("$date\t".$levelNumber."\t".$msg);
