@@ -12,12 +12,45 @@
 
 //region global variables
 $title = "Calendar";                                  //html title page
-const monthNames=array("January","February","March","April","May","June","July","August","September","October","November","December");
-const monthDays=array(31,28,31,30,31,30,31,31,30,31,30,31);
-//set Timestamp(Date("j/n/o"));
+$monthDays=array(0,31,28,31,30,31,30,31,31,30,31,30,31);
+setlocale(LC_TIME,"FR");
 $date=Date($timestamp=time());
-$month=Date("m",$date);
-$year=$date->format("m");
+$day=Date("j",$date);
+$month=strftime("%B",$date);
+$year=Date("Y",$date);
+$monthNb=Date("n",$date);
+//fn leap year
+$leap=Date("L",$date);
+if($leap==1){
+    $monthDays[2]=29;
+}else{
+    $monthDays[2]=28;
+}
+//fn decalage
+$tempdecal=Date("w",strtotime($year."-".$monthNb."-1"));
+switch ($tempdecal){
+    case 0:
+        $decalage=6;
+        break;
+    case 1:
+        $decalage=0;
+        break;
+    case 2:
+        $decalage=1;
+        break;
+    case 3:
+        $decalage=2;
+        break;
+    case 4:
+        $decalage=3;
+        break;
+    case 5:
+        $decalage=4;
+        break;
+    case 6:
+        $decalage=5;
+        break;
+}
 //endregion
 
 //region initialization
@@ -33,9 +66,9 @@ $year=$date->format("m");
 
 <!--region gabarit-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
     <title>
         <?php
         echo $title;
@@ -55,26 +88,29 @@ $year=$date->format("m");
     </ul>
 </div>
 <ul class="weekdays">
-    <li>Mo</li>
-    <li>Tu</li>
-    <li>We</li>
-    <li>Th</li>
-    <li>Fr</li>
-    <li>Sa</li>
-    <li>Su</li>
+    <?php
+    echo"<li>Mo</li>";
+    echo"<li>Tu</li>";
+    echo"<li>We</li>";
+    echo"<li>Th</li>";
+    echo"<li>Fr</li>";
+    echo"<li>Sa</li>";
+    echo"<li>Su</li>";
+    ?>
 </ul>
 <ul class="days">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-    <li>6</li>
-    <li>7</li>
-    <li>8</li>
-    <li>9</li>
-    <li><span class="active">10</span></li>
-    <li>11</li>
+    <?php
+    for($i=0;$i<$decalage;$i++){
+        echo"<li> </li>";
+    }
+    for($i=1;$i<=$monthDays[$monthNb];$i++){
+        if($i!=$day){
+            echo"<li>".$i."</li>";
+        }else{
+            echo"<li><span class='active'>".$i."</span></li>";
+        }
+    }
+    ?>
 </ul>
 <!--endregion-->
 </body>
