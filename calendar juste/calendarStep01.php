@@ -13,7 +13,8 @@
 //region global variables
 $title = "Calendar";                                  //html title page
 $monthDays = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-
+$weekDays="";
+$days="";
 setlocale(LC_TIME, "FR");
 $date = Date($timestamp = time());
 $day = Date("j", $date);
@@ -22,6 +23,9 @@ $year = Date("Y", $date);
 $monthNb = Date("n", $date);
 //fn leap year
 $leap = Date("L", $date);
+for ($i = 0; $i <= 6; $i++) {
+    $weekDays+= "<li>" . strftime("%a", strtotime("+$i day", strtotime('Monday'))) . "</li>";
+}
 if ($leap == 1) {
     $monthDays[2] = 29;
 } else {
@@ -51,6 +55,16 @@ switch ($tempdecal) {
     case 6:
         $decalage = 5;
         break;
+}
+for ($i = 0; $i < $decalage; $i++) {
+    $days+= "<li> </li>";
+}
+for ($i = 1; $i <= $monthDays[$monthNb]; $i++) {
+    if ($i != $day) {
+        $days+= "<li>" . $i . "</li>";
+    } else {
+        $days+= "<li><span class='active'>" . $i . "</span></li>";
+    }
 }
 //endregion
 
@@ -90,23 +104,12 @@ switch ($tempdecal) {
 </div>
 <ul class="weekdays">
     <?php
-    for ($i = 0; $i <= 6; $i++) {
-        echo "<li>" . strftime("%a", strtotime("+$i day", strtotime('Monday'))) . "</li>";
-    }
+        echo $weekDays;
     ?>
 </ul>
 <ul class="days">
     <?php
-    for ($i = 0; $i < $decalage; $i++) {
-        echo "<li> </li>";
-    }
-    for ($i = 1; $i <= $monthDays[$monthNb]; $i++) {
-        if ($i != $day) {
-            echo "<li>" . $i . "</li>";
-        } else {
-            echo "<li><span class='active'>" . $i . "</span></li>";
-        }
-    }
+        echo $days;
     ?>
 </ul>
 <!--endregion-->
