@@ -15,7 +15,7 @@ $title = "Calendar";                                  //html title page
 $monthDays = array(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 $weekDays="";
 $days="";
-setlocale(LC_TIME, "FR");
+setlocale(LC_TIME, "fr");
 $date = Date($timestamp = time());
 $day = Date("j", $date);
 $month = strftime("%B", $date);
@@ -24,7 +24,7 @@ $monthNb = Date("n", $date);
 //fn leap year
 $leap = Date("L", $date);
 for ($i = 0; $i <= 6; $i++) {
-    $weekDays+= "<li>" . strftime("%a", strtotime("+$i day", strtotime('Monday'))) . "</li>";
+    $weekDays=$weekDays. "<li>" . strftime("%a", strtotime("+$i day", strtotime('Monday'))) . "</li>";
 }
 if ($leap == 1) {
     $monthDays[2] = 29;
@@ -57,13 +57,13 @@ switch ($tempdecal) {
         break;
 }
 for ($i = 0; $i < $decalage; $i++) {
-    $days+= "<li> </li>";
+    $days=$days."<li> </li>";
 }
 for ($i = 1; $i <= $monthDays[$monthNb]; $i++) {
     if ($i != $day) {
-        $days+= "<li>" . $i . "</li>";
+        $days=$days."<li>" . $i . "</li>";
     } else {
-        $days+= "<li><span class='active'>" . $i . "</span></li>";
+        $days=$days."<li><span class='active'>" . $i . "</span></li>";
     }
 }
 //endregion
